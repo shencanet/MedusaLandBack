@@ -1,28 +1,29 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    orderDate:{
-        type: Date,
+    address:{
+        type: String,
         required: true
-    },
-    returnDate:{
-        type: Date,
-        required:true
-    },
-    returned:{
-        type: Boolean,
-        default: false
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    filmId: {
+    medusaId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Film',
+        ref: 'Medusa',
         required: true
-    }
+    },
+    totalPrice: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    
+},
+{
+    timestamps: true
 })
 
 const Order = mongoose.model('Order', orderSchema);

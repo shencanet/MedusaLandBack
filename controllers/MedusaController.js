@@ -24,18 +24,18 @@ medusaController.getAll = async (req,res)=>{
 
 medusaController.addmedusa = async (req,res)=> {
     try{
-        const {title,author,genre,actors} = req.body;
-        if(!title || !author || !actors){
+        const {medusaId,price,stock} = req.body;
+        if(!medusaId|| !price || !stock){
             return res.status(400).json({
                 success: false,
-                message: 'title and author are required'
+                message: 'medusaId  are required'
             })
         }
-        const newFilm = {
-            title,
-            author,
-            genre,
-            actors
+        const newMedusa = {
+            medusaId,
+            price,
+            stock
+            
         }
         await Medusa.create(newMedusa);
         return res.status(200).json(
@@ -56,7 +56,7 @@ medusaController.addmedusa = async (req,res)=> {
 medusaController.getmedusaById = async(req,res)=>{
     try{
         const {id} = req.params;
-        const film = await Medusa.findById(id);
+        const medusa = await Medusa.findById(id);
         if(!medusa){
             return res.status(404).json(
                 {
